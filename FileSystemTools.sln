@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30523.141
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DirectoryLister", "DirectoryLister\DirectoryLister.csproj", "{204627B4-DEE7-4147-A300-0FFC613F6832}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{204627B4-DEE7-4147-A300-0FFC613F6832}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{204627B4-DEE7-4147-A300-0FFC613F6832}.Debug|Any CPU.Build.0 = Release|Any CPU
+		{204627B4-DEE7-4147-A300-0FFC613F6832}.Debug|x86.ActiveCfg = Debug|x86
+		{204627B4-DEE7-4147-A300-0FFC613F6832}.Debug|x86.Build.0 = Debug|x86
+		{204627B4-DEE7-4147-A300-0FFC613F6832}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{204627B4-DEE7-4147-A300-0FFC613F6832}.Release|Any CPU.Build.0 = Release|Any CPU
+		{204627B4-DEE7-4147-A300-0FFC613F6832}.Release|x86.ActiveCfg = Release|x86
+		{204627B4-DEE7-4147-A300-0FFC613F6832}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {60B09768-704B-4916-960D-FEF9EC8F6558}
+	EndGlobalSection
+EndGlobal
