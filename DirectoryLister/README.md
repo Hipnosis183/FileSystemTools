@@ -5,5 +5,6 @@ Usage: DirectoryLister.exe -param1 -param2 ...
 Parameters:
 
  -h : Help
- -i : Include Files
+ -e : Exclude Files
  -f : Get Full Path
+ -n : Disable Natural Sorting

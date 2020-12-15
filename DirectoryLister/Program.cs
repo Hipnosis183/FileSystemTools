@@ -1,16 +1,19 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace DirectoryLister
 {
     class Program
     {
-        private enum Params { Help, Files, Full };
+        private enum Params { Help, Files, Full, Natural };
 
-        private static string[] Argums = { "-h", "-i", "-f" };
+        private static string[] Argums = { "-h", "-e", "-f", "-n" };
+
+        private static string Output = "Directories.txt";
 
         private static string HelpMessage = "\nUsage: DirectoryLister.exe -param1 -param2 ...\n\n" +
-                                            "Parameters:\n\n -h : Help\n -i : Include Files\n -f : Get Full Path";
+                                            "Parameters:\n\n -h : Help\n -e : Exclude Files\n -f : Get Full Path\n -n : Disable Natural Sorting";
 
         static void Main(string[] Args)
         {
@@ -21,14 +24,14 @@ namespace DirectoryLister
 
             else
             {
-                if (File.Exists("Directories.txt"))
+                if (File.Exists(Output))
                 {
-                    File.Delete("Directories.txt");
+                    File.Delete(Output);
                 }
                 
                 ListFolders(Args);
 
-                if (CheckArguments(Args, Argums[(int)Params.Files]))
+                if (!CheckArguments(Args, Argums[(int)Params.Files]))
                 {
                     ListFiles(Args);
                 }
@@ -53,11 +56,16 @@ namespace DirectoryLister
 
         private static void ListFolders(string[] Args)
         {
-            string[] Directories = Directory.GetDirectories(Directory.GetCurrentDirectory());
+            List<string> Directories = new List<string>(Directory.GetDirectories(Directory.GetCurrentDirectory()));
 
-            if (Directories.Length != 0)
+            if (!CheckArguments(Args, Argums[(int)Params.Natural]))
             {
-                using (StreamWriter Stream = File.CreateText("Directories.txt"))
+                Directories.Sort(new Classes.NaturalStringComparer());
+            }
+
+            if (Directories.Count != 0)
+            {
+                using (StreamWriter Stream = File.CreateText(Output))
                 {
                     foreach (string Folder in Directories)
                     {
@@ -69,15 +77,23 @@ namespace DirectoryLister
 
         private static void ListFiles(string[] Args)
         {
-            string[] Files = Directory.GetFiles(Directory.GetCurrentDirectory());
+            List<string> Files = new List<string>(Directory.GetFiles(Directory.GetCurrentDirectory()));
 
-            if (Files.Length != 0)
+            if (!CheckArguments(Args, Argums[(int)Params.Natural]))
             {
-                using (StreamWriter Stream = File.Exists("Directories.txt") ? File.AppendText("Directories.txt") : File.CreateText("Directories.txt"))
+                Files.Sort(new Classes.NaturalStringComparer());
+            }
+
+            if (Files.Count != 0)
+            {
+                using (StreamWriter Stream = File.Exists(Output) ? File.AppendText(Output) : File.CreateText(Output))
                 {
                     foreach (string File in Files)
                     {
-                        Stream.WriteLine(CheckArguments(Args, Argums[(int)Params.Full]) ? File : Path.GetFileName(File));
+                        if (File != System.Reflection.Assembly.GetExecutingAssembly().Location)
+                        {
+                            Stream.WriteLine(CheckArguments(Args, Argums[(int)Params.Full]) ? File : Path.GetFileName(File));
+                        }                        
                     }
                 }
             }
