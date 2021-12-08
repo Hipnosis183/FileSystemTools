@@ -1,6 +1,6 @@
 Dump directory and file names and paths to a file.
 
-Usage: DirectoryLister.exe -param1 -param2 ...
+Usage: DirectoryLister.exe [-param1 -param2 ...]
 
 Parameters:
 

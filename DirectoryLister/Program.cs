@@ -12,7 +12,7 @@ namespace DirectoryLister
 
         private static string Output = "Directories.txt";
 
-        private static string HelpMessage = "\nUsage: DirectoryLister.exe -param1 -param2 ...\n\n" +
+        private static string HelpMessage = "\nUsage: DirectoryLister.exe [-param1 -param2 ...]\n\n" +
                                             "Parameters:\n\n -h : Help\n -e : Exclude Files\n -f : Get Full Path\n -n : Disable Natural Sorting";
 
         static void Main(string[] Args)
